@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+	<div layout:fragment=content1>
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel panel-info">
+					<div class="panel-heading">Sign Up</div>
+					<div class="panel-body">
+
+						<form th:action="@{/loginCheck}" method="post">
+
+							<div class="form-group">
+								<div class="panel panel-info">
+									<div class="panel-heading">Adhérent</div>
+									<div class="panel-body">
+
+
+									<div class="form-group">
+										<label class="control-label">Login</label> <input
+											class="form-control" type="text" name="persoLog"
+											th:value="${personne.persoLog}"> <span
+											th:errors="${personne.persoLog}" class="text-danger"></span>
+
+									
+									<a href="#" class="btn btn-info">identifiant oublié</a></div>
+									<!--<li class="active"><a th:href="#" class="btn btn-info">identifiant oublié</a> <li>-->
+
+									<div class="form-group">
+										<label class="control-label">Mot de passe</label> <input
+											class="form-control" type="password" name="persoPsw"
+											th:value="${personne.persoPsw}"> <span
+											th:errors="${personne.persoPsw}" class="text-danger"></span>
+									
+									<a href="#" class="btn btn-info">Mot de passe oublié</a>
+										</div>							
+							
+										<button type="submit" class="btn btn-info">Valider</button>
+									</div>
+							</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

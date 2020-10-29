@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Creation d'Exercice</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<div layout:fragment=content1>
+	<div class="container">
+		<div class="panel panel-primary">
+			
+				<div class="panel panel-info">
+					<div class="panel-heading">FORMULAIRE DE CREATION D'UNE
+						ACIVITE/SERVICE</div>
+					<div class="panel-body">
+
+						<form th:action="@{/TestsaveExercice}" method="post">
+							<div class="form-group">
+								<label class="control-label"> association</label> <select
+									id="assoId" name="assoId" class="form-control">
+									<option th:each="association: ${ListAssos}"
+										th:value="${association.assoId}"
+										th:utext="${association.assoNom}" />
+								</select>
+							</div>
+							<div class="panel panel-info">
+								<div class="panel-heading">ACTIVITES/SERVICES</div>
+								<div class="form-group">
+									<label class="control-label"> Référence</label> <input
+										class="form-control" type="text" name="Nom"
+										th:value="${exercice.nom}"> <span
+										th:errors="${exercice.nom}" class="text-danger"></span>
+
+								</div>
+								<div class="form-group">
+								<label class="control-label">type</label> <select
+									id="assoId" name="assoId" class="form-control">
+									<option th:each="type: ${groupeList}"
+										th:value="${type.groupeId}"
+										th:utext="${type.nom}" />
+								</select>
+							</div>
+								<div class="form-group">
+									<label class="control-label">description</label> <input
+										class="form-control" type="text" name="description"
+										th:value="${exercice.description}"> <span
+										th:errors="${exercice.description}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">date de Début</label> <input
+										class="form-control" type="text" name="dateDebut"
+										th:value="${exercice.dateDebut}"> <span
+										th:errors="${exercice.dateDebut}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">date de Fin</label> <input
+										class="form-control" type="text" name="dateFin"
+										th:value="${exercice.dateFin}"> <span
+										th:errors="${exercice.dateFin}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Horaires</label> <input
+										class="form-control" type="text" name="horaire"
+										th:value="${exercice.horaire}"> <span
+										th:errors="${exercice.horaire}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">genre</label> <input
+										class="form-control" type="text" name="genre"
+										th:value="${exercice.genre}"> <span
+										th:errors="${exercice.genre}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Nombre de Places</label> <input
+										class="form-control" type="text" name="quantite"
+										th:value="${exercice.quantite}"> <span
+										th:errors="${exercice.quantite}" class="text-danger"></span>
+								</div>
+							</div>
+							
+
+								<button type="submit" class="btn btn-info">Ajouter</button>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

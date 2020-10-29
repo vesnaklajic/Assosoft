@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>Visiteurs</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+	<div layout:fragment=content1>
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading"> Liste des Inscrits</div>
+				<div class="panel-body">
+					<form th:action="@{/listInscrits}" method="get">
+						<label> Mot clé : </label> <input type="text" name="motCle"
+							th:value="${motCle}">
+						<button type="submit" class="btn btn-primary ">Chercher
+							une personne par son nom</button>
+							</form>
+			</div>
+			
+						<table class="table">
+							<tr>
+								<th>ID</th>
+								
+								
+								<th>Exercice</th>
+								<th>Genre</th>
+								<th>ASSOCIATION</th>
+								<th>Prenom</th>
+								<!-- Pas initialisée <th> Date de Naissance</th>-->
+								<th>Email</th>
+								<!--<th>Tel</th> -->
+								<th>Statut</th>
+							</tr>
+							<tr th:each="menber:${MenberList}">
+								<td th:text="${menber.personne.persoId}"></td>
+								<td th:text="${menber.exercice.nom}"></td>
+								<td th:text="${menber.exercice.genre}"></td>
+								<td th:text="${menber.exercice.association.assoNom}"></td>
+								<td th:text="${menber.personne.persoNom}?:'(non renseigner)'"></td>
+								<td th:text="${menber.personne.persoPrenom}?:'(non renseigner)'"></td>
+								<!-- A tester Pas initialisée <td th:text="${a.persoDateNaiss}?:'(non renseigner)'"></td>-->
+								<!--<td th:text="${menber.personne.persoLog}?:'(non renseigner)'"></td>
+								<td th:text="${menber.personne.persoPsw}?:'(non renseigner)'"></td>
+								-->
+								<td th:text="${menber.personne.persoEmail}?:'(non renseigner)'"></td>
+								<!--  <td th:text="${menber.personne.persoTel}?:'(non renseigner)'"></td>
+								-->
+						      <td th:text="${menber.personne.statut.statutLabel}?:'(non renseigner)'"></td>
+								<td><a class="btn btn-info"
+									th:href="@{/testeditInscrit(id=${menber.Inscrireid})}">Edit
+								</a></td>
+
+							</tr>
+						</table>
+					<ul class="nav nav-pills">
+					<li th:class="${currentPage==status.index}?'active':''"
+						th:each="page,status:${pages}"><a
+						th:href="@{/listInscrits(page=${status.index}, motCle=${motCle})}"
+						th:text="${status.index}"></a></li>
+				</ul>
+						
+						</div>
+
+	</div>
+		</div>
+		
+</body>
+</html>
