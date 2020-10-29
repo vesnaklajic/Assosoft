@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Inscription Exercice</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<div layout:fragment=content1>
+		<div class="container">
+		<div class="panel panel-primary">
+			
+				<div class="panel panel-info">
+					<div class="panel-heading">FORMULAIRE D'INSCRIPTION A UNE
+						ACIVITE/SERVICE</div>
+					<div class="panel-body">
+
+						<form th:action="@{/saveDoExercice}" method="post">
+
+							<div class="form-group">
+								<label class="control-label"> Exercice</label> <select
+									id="exerciceId" name="exerciceId" class="form-control">
+									<option th:each="sit: ${situerList}"
+										th:value="${sit.exercice.exerciceId}" th:utext="${sit.exercice.nom}" />
+								</select>
+							</div>
+							
+							<!--  <div class="form-group">
+								<label class="control-label"> Exercice</label> <select
+									id="exerciceId" name="exerciceId" class="form-control">
+									<option th:each="exercice: ${exerciceList}"
+										th:value="${exercice.exerciceId}" th:utext="${exercice.nom}" />
+								</select>
+							</div>
+							-->
+						 	<div class="form-group">
+					<label class="control-label"> association</label>
+					<select id="assoId" name="assoId" class="form-control">
+                    <option th:each="association: ${ListAssos}"
+                            th:value="${association.assoId}"
+                            th:utext="${association.assoNom}"/>
+            		</select>
+			</div>
+
+<div class="form-group">
+								<label class="control-label">Nom</label> <input
+									class="form-control" type="text" name="persoNom"
+									th:value="${personne.persoNom}"> <span
+									th:errors="${personne.persoNom}" class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Prénom</label> <input
+									class="form-control" type="text" name="persoPrenom"
+									th:value="${personne.persoPrenom}"> <span
+									th:errors="${personne.persoPrenom}" class="text-danger"></span>
+							</div>
+							
+							<!--  <div class="form-group">
+								<label class="control-label">Date de naissance</label> <input
+									class="form-control" type="text" name="persoDateNaiss"
+									th:value="${personne.persoDateNaiss}"> <span
+									th:errors="${personne.persoDateNaiss}" class="text-danger"></span>
+							</div>
+							-->
+							<div class="form-group">
+								<label class="control-label">E-mail</label> <input
+									class="form-control" type="text" name="persoEmail"
+									th:value="${personne.persoEmail}"> <span
+									th:errors="${personne.persoEmail}" class="text-danger"></span>
+							</div>
+							
+								<button type="submit" class="btn btn-info">Inscription</button>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

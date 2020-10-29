@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Edit Exercice</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<div layout:fragment=content1>
+
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">AFFICHAGE ACIVITE/SERVICE</div>
+				<div class="panel-body">
+
+					<form th:action="@{/saveEdit}" method="post">
+						<div class="form-group">
+							<label class="control-label"> ID </label> <label
+								th:text="${a.exercice.exerciceId}"></label> <input
+								class="form-control" type="hidden" name="exerciceId"
+								th:value="${a.exercice.exerciceId}">
+
+						</div>
+
+						<div class="form-group">
+							<label class="control-label"> Exercice</label> <input
+								class="form-control" type="text" name="Nom"
+								th:value="${a.exercice.nom}"> <span
+								th:errors="${a.exercice.nom}" class="text-danger"></span>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label"> Association</label> <input
+								class="form-control" type="text" name="assoNom"
+								th:value="${a.exercice.association.assoNom}" disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label class="control-label"> Type</label> <select id="groupeId"
+								name="groupeId" class="form-control">
+								<option selected="selected" th:utext="${a.exercice.groupe.nom}"></option>
+								<option th:each="t: ${typeList}" th:value="${t.groupeId}"
+									th:utext="${t.nom}" />
+							</select>
+						</div>
+						<!-- <div class="form-group">
+							<label class="control-label"> Genre</label> <select id="exerciceId"
+								name="genre" class="form-control">
+								<option selected="selected" th:utext="${a.exercice.genre}"></option>
+								<option th:each="gen: ${genreList}"
+									th:value="${gen.situerId}" th:utext="${gen.exercice.genre}" />
+							</select>
+						</div>   --> 
+						<div class="form-group">
+							<label class="control-label">Genre</label> <input
+								class="form-control" type="text" name="genre"
+								th:value="${a.exercice.genre}"> <span
+								th:errors="${a.exercice.genre}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Description</label> <input
+								class="form-control" type="text" name="description"
+								th:value="${a.exercice.description}"> <span
+								th:errors="${a.exercice.description}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nombre de Places</label> <input
+								class="form-control" type="text" name="quantite"
+								th:value="${a.exercice.quantite}"> <span
+								th:errors="${a.exercice.quantite}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Horaires</label> <input
+								class="form-control" type="text" name="horaire"
+								th:value="${a.exercice.horaire}"> <span
+								th:errors="${a.exercice.horaire}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Date de Début de saison</label> <input
+								class="form-control" type="text" name="dateDebut"
+								th:value="${a.exercice.dateDebut}"> <span
+								th:errors="${a.exercice.dateDebut}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Date de Fin de Saison</label> <input
+								class="form-control" type="text" name="dateFin"
+								th:value="${a.exercice.dateFin}"> <span
+								th:errors="${a.exercice.dateFin}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label"> Adresse ID </label> <label
+								th:text="${a.adresse.adresseId}"></label> <input
+								class="form-control" type="hidden" name="adresseId"
+								th:value="${a.adresse.adresseId}">
+
+						</div>
+						<div class="form-group">
+							<label class="control-label">Adresse</label> <input
+								class="form-control" type="text" name="rue"
+								th:value="${a.adresse.rue}"> <span
+								th:errors="${a.adresse.rue}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">CP : </label> <input
+								class="form-control" type="text" name="cp"
+								th:value="${a.adresse.cp}"> <span
+								th:errors="${a.adresse.cp}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Ville :</label> <input
+								class="form-control" type="text" name="ville"
+								th:value="${a.adresse.ville}"> <span
+								th:errors="${a.adresse.ville}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label"> Statut</label> <select
+								id="statutId" name="statutId" class="form-control">
+								<option selected="selected"
+									th:utext="${a.exercice.statut.statutLabel}"></option>
+								<option th:each="statut: ${statutList}"
+									th:value="${statut.statutId}" th:utext="${statut.statutLabel}" />
+							</select>
+						</div>
+
+						
+							<button type="submit" class="btn btn-info">Modifier</button>
+						
+					</form>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

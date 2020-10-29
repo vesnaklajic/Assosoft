@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>AFFICHAGE DES DONATIONS</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<div layout:fragment=content1>
+		<div class="container">
+		<div class="panel panel-primary">
+			
+				<div class="panel panel-info">
+					<div class="panel-heading">AFFICHAGE DON</div>
+					<div class="panel-body">
+
+						<form th:action="@{/donate/saveEdit}" method="post">
+<div class="form-group"> 
+						<label class="control-label" > ID </label> 
+						<label th:text ="${don.donId}"></label> 
+						 <input class="form-control" type="hidden" name ="donId" th:value="${don.donId}">
+					</div>
+							<div class="col-md-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">RENSEIGNEMENT</div>
+									<div class="panel-body">
+
+										  <div class="form-group">
+										
+											<label class="control-label"> Don pour l'association</label>
+											
+											<select	id="assoId" name="assoId" class="form-control" >
+												  <option  selected="selected" th:utext="${don.association.assoNom}"></option> 
+												<option th:each="association: ${ListAssos}"
+													th:value="${association.assoId}"
+													th:utext="${association.assoNom}" />
+											</select>
+										</div> 		
+											
+										</div>
+									</div>
+								</div>
+							
+						  	<div class="col-md-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">TYPE DE DON</div>
+									 <div class="panel-body">
+										<div>
+											<label class="control-label">Description</label> <input
+												class="form-control" type="text" name="donDescription"
+												th:value="${don.donDescription}"> <span
+												th:errors="${don.donDescription}" class="text-danger"></span>
+										</div> 
+										 
+										 <div>
+											<label class="control-label">MONTANT</label> <input
+												class="form-control" type="text" name="donMontant"
+												th:value="${don.donMontant}"> <span
+												th:errors="${don.donMontant}" class="text-danger"></span>
+										</div>
+										 
+									</div>
+								</div>
+							</div>
+							 <div class="col-md-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">DONATEUR</div>
+									<div class="panel-body">
+										<div>
+											<label class="control-label">Prénom</label> <input
+												class="form-control" type="text" name="persoPrenom"
+												th:value="${don.personne.persoPrenom}"> <span
+												th:errors="${don.personne.persoPrenom}" class="text-danger"></span>
+										</div>
+									  	<div class="form-group">
+											<label class="control-label">Nom</label> <input
+												class="form-control" type="text" name="persoNom"
+												th:value="${don.personne.persoNom}"> <span
+												th:errors="${don.personne.persoNom}" class="text-danger"></span>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label">E-mail</label> <input
+												class="form-control" type="text" name="persoEmail"
+												th:value="${don.personne.persoEmail}"> <span
+												th:errors="${don.personne.persoEmail}" class="text-danger"></span>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label">Tel</label> <input
+												class="form-control" type="text" name="persoTel"
+												th:value="${don.personne.persoTel}"> <span
+												th:errors="${don.personne.persoTel}" class="text-danger"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						<div class="col-md-6">
+								<div class="panel panel-info">
+								<div class="panel-heading">STATUT</div>
+									<div class="panel-body">
+										<div>
+							<label class="control-label"> Statut</label>
+							 <select	id="statutId" name="statutId" class="form-control" >
+							 <option  selected="selected" th:utext="${don.statut.statutLabel}"></option> 
+												  <option th:each="statut: ${statutList}"
+													th:value="${statut.statutId}"
+													th:utext="${statut.statutLabel}" />
+											</select>
+						</div>
+						</div>
+						</div>
+						</div>
+								<button type="submit" class="btn btn-info">Sauvegarder</button>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

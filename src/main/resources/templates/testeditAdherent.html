@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>testAdhesion</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<div layout:fragment=content1>
+		<div class="container">
+			<div class="panel panel-primary">
+
+				<div class="panel-heading">AFFICHAGE D'ADHESION</div>
+				<div class="panel-body">
+					<div class="panel-heading">Adhérent</div>
+					<form th:action="@{testeditClientSsave}" method="post">
+						<div class="form-group">
+							<label class="control-label"> ID </label> <label
+								th:text="${adherent.personne.persoId}"></label> <input class="form-control"
+								type="hidden" name="persoId" th:value="${adherent.personne.persoId}">
+						</div>
+
+
+					 	<div class="form-group">
+							<label class="control-label"> association</label>
+							 <input	class="form-control" type="text" name="assoNom"
+								th:value="${adherent.association.assoNom}" disabled="disabled">
+							 
+						</div>
+						<div>
+							<label class="control-label">Prénom</label> <input
+								class="form-control" type="text" name="persoPrenom"
+								th:value="${adherent.personne.persoPrenom}"> <span
+								th:errors="${adherent.personne.persoPrenom}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Nom</label> <input
+								class="form-control" type="text" name="persoNom"
+								th:value="${adherent.personne.persoNom}"> <span
+								th:errors="${adherent.personne.persoNom}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Date de naissance</label> <input
+								class="form-control" type="text" name="persoDateNaiss"
+								th:value="${adherent.personne.persoDateNaiss}"> <span
+								th:errors="${adherent.personne.persoDateNaiss}" class="text-danger"></span>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">E-mail</label> <input
+								class="form-control" type="text" name="persoEmail"
+								th:value="${adherent.personne.persoEmail}"> <span
+								th:errors="${adherent.personne.persoEmail}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Login</label> <input
+								class="form-control" type="text" name="persoLog"
+								th:value="${adherent.personne.persoLog}"> <span
+								th:errors="${adherent.personne.persoLog}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Mot de passe</label> <input
+								class="form-control" type="password" name="persoPsw"
+								th:value="${adherent.personne.persoPsw}"> <span
+								th:errors="${adherent.personne.persoPsw}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tel</label> <input
+								class="form-control" type="text" name="persoTel"
+								th:value="${adherent.personne.persoTel}"> <span
+								th:errors="${adherent.personne.persoTel}" class="text-danger"></span>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label"> Statut</label>
+							 <select	id="statutId" name="statutId" class="form-control" >
+							 <option  selected="selected" th:utext="${adherent.personne.statut.statutLabel}"></option> 
+												  <option th:each="statut: ${statutList}"
+													th:value="${statut.statutId}"
+													th:utext="${statut.statutLabel}" />
+											</select>
+						</div>
+						<button type="submit" class="btn btn-info">Sauvegarder</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+

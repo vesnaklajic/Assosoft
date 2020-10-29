@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Edition du profil d'association</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<div layout:fragment=content1>
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Affichage</div>
+				<div class="panel-body">
+					<form th:action="@{/AssoSavEdit}" method="post">
+						<div class="form-group">
+							<label class="control-label"> ID </label> <label
+								th:text="${association.assoId}"></label> <input
+								class="form-control" type="hidden" name="assoId"
+								th:value="${association.assoId}">
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">Information de l'Association</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label class="control-label">Nom de l'Association</label> <input
+										class="form-control" type="text" name="assoNom"
+										th:value="${association.assoNom}"> <span
+										th:errors="${association.assoNom}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">RNA</label> <input
+										class="form-control" type="text" name="rna"
+										th:value="${association.rna}"> <span
+										th:errors="${association.rna}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Tel</label> <input
+										class="form-control" type="text" name="assoTel"
+										th:value="${association.assoTel}"> <span
+										th:errors="${association.assoTel}" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label class="control-label">E-mail</label> <input
+										class="form-control" type="text" name="assoEmail"
+										th:value="${association.assoEmail}"> <span
+										th:errors="${association.assoEmail}" class="text-danger"></span>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label"> Domaine d'activités</label> <select
+										id="categorieId" name="categorieId" class="form-control">
+										<option selected="selected"
+											th:utext="${association.categorie.categorieLabel}"></option>
+										<option th:each="cat: ${catList}"
+											th:value="${cat.categorieId}"
+											th:utext="${cat.categorieLabel}" />
+									</select>
+								</div>
+								<!--  Test Adresse OK -->
+								<div class="panel panel-info">
+									<div class="panel-heading">LOCALISATION</div>
+									<div class="form-group">
+										<label class="control-label">Adresse</label> <input
+											class="form-control" type="text" name="rue"
+											th:value="${association.adresse.rue}"> <span
+											th:errors="${association.adresse.rue}" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label class="control-label">CP : </label> <input
+											class="form-control" type="text" name="cp"
+											th:value="${association.adresse.cp}"> <span
+											th:errors="${association.adresse.cp}" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ville :</label> <input
+											class="form-control" type="text" name="ville"
+											th:value="${association.adresse.ville}"> <span
+											th:errors="${association.adresse.ville}" class="text-danger"></span>
+									</div>
+								</div>
+								<!-- Fin test adresse -->
+								<div class="form-group">
+									<label class="control-label"> Statut</label> <select
+										id="statutId" name="statutId" class="form-control">
+										<option selected="selected"
+											th:utext="${association.statut.statutLabel}"></option>
+										<option th:each="stat: ${statutList}"
+											th:value="${stat.statutId}" th:utext="${stat.statutLabel}" />
+									</select>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-info">Modification</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

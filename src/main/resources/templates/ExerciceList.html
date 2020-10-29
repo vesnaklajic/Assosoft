@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>Exercices</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+	<div layout:fragment=content1>
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Liste des Activités ou Services</div>
+				<div class="panel-body">
+					<form th:action="@{/ExerciceList}" method="get">
+						<label> Mot clé : </label> <input type="text" name="motCle"
+							th:value="${motCle}">
+						<button type="submit" class="btn btn-primary ">Chercher
+							</button>
+							</form>
+							</div>
+							
+						<table class="table">
+						
+							<tr>
+								<th>ID</th>
+								<th>Nom</th>
+								<th>type</th>
+								<th>Genre</th>
+								 <th> Date de début</th>
+								<th>horaire</th>
+								<th>Nombre de places</th>
+								<th>Adresse</th>
+								<th>Association</th>
+								<th>Statut</th>
+							</tr>
+							 <tr 
+							  th:each="ex:${ExercicesList}">
+								<td th:text="${ex.exerciceId}"></td>
+								<td th:text="${ex.nom}"></td>
+					
+								<td th:text="${ex.groupe.nom}"></td>
+								<td th:text="${ex.genre}"></td>
+								<!-- Pas initialisée <td th:text="${a.persoDateNaiss}"></td>-->
+								<td th:text="${ex.dateDebut}"></td>
+								<td th:text="${ex.horaire}"></td>
+								
+								<td th:text="${ex.quantite}"></td>
+								<!--  <td > Probleme de recupération de la donnée association</td>-->
+								<td > Probleme de recupération de la donnée adresse</td>
+								 <td th:text="${ex.association.assoNom}"></td>
+								
+								<!-- <td  th:text="${situerList.findByExerciceContains(ex).adresse}"></td>
+								 -->
+								<!--  <td th:text="${(situerList.findAdresseEx(ex)).adresse}"></td> -->
+								<!--  <tr th:each="s:${situerList.findByExerciceContains(ex).adresse}">-->
+								<!--<td th:text="${s.adresse}+{s.cp}+{s.ville}"></td>--> 
+								<!--<td  th:text="s:${situerList.findByExerciceContains(ex).adresse}">
+								</td>-->
+								<td  th:text="${ex.statut.statutLabel}"></td>
+						
+								<td><a class="btn btn-info"
+									th:href="@{/editExercices(id=${ex.exerciceId})}">Edit
+								</a></td>
+
+								
+								<td><a class="btn btn-danger"
+									onclick="return confirm(' Etes vous bien sûr(e)?')"
+									th:href="@{/delete(id=${ex.exerciceId},page=${currentPage},motCle=${motCle})}">Delete
+								</a></td>
+								
+							</tr> 
+						</table>
+						<ul class="nav nav-pills">
+							<li th:class="${currentPage==status.index}?'active':''"
+								th:each="page,status:${pages}"><a
+								th:href="@{/ExerciceList(page=${status.index}, motCle=${motCle})}"
+								th:text="${status.index}"></a></li>
+						</ul>
+						</div>
+				</div>
+			</div>
+		
+</body>
+</html>
